@@ -1,0 +1,25 @@
+# CodeIgniter (src/)
+src/vendor/
+src/writable/cache/*
+src/writable/logs/*
+src/writable/session/*
+src/writable/uploads/*
+!src/writable/cache/index.html
+!src/writable/logs/index.html
+!src/writable/session/index.html
+!src/writable/uploads/index.html
+src/.env
+
+# Vue frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docker
+docker/**/*.log
