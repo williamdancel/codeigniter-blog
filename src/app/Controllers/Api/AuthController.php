@@ -8,11 +8,11 @@ use App\Services\AuthService;
 
 class AuthController extends BaseController
 {
-    protected AuthService $authService;
+    private AuthService $authService;
         
     public function __construct()
     {
-        $this->authService = new AuthService();
+        $this->authService = service('authService');
     }
 
     public function register()
@@ -65,9 +65,20 @@ class AuthController extends BaseController
                 'message' => 'Not Authenticated',
             ]);
         }
-
+        session()->destroy();
         return $this->response->setJSON([
             'user' => $user,
         ]);
+    }
+
+    public function user()
+    {
+        $user = $this->authService->currentUser();
+
+        if(!$user){
+            return $this->response->setStatusCode(401)->setJSON(['message' => 'Not Authenticated']);
+        }
+
+        return $this->response->setJSON(['user' => $user]);
     }
 }

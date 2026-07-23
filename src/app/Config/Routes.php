@@ -15,3 +15,7 @@ $routes->group('api', ['filter' => 'cors'], function($routes){
     $routes->post('logout','Api\AuthController::logout');
     $routes->get('user','Api\AuthController::user');
 });
+
+$routes->group('api',['filter' => 'auth'], function($routes){
+    $routes->get('user', 'Api\AuthController::user');
+});
