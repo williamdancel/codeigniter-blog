@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const auth = useAuthStore()
 const form = ref({ email:'', password: ''})
@@ -10,6 +13,7 @@ async function handleSubmit() {
     errorMessage.value = ''
     try {
         await auth.login(form.value)
+        router.push({ name: 'dashboard' })
     } catch(err) {
         errorMessage.value = err.message ?? 'Login failed.'
     }
